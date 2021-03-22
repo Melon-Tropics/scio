@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
+        uses: coursier/cache-action@v6
       - name: Java 11 setup
         uses: olafurpg/setup-scala@v10
         with:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
+        uses: coursier/cache-action@v6
       - name: Java 11 setup
         uses: olafurpg/setup-scala@v10
         with:
@@ -30,8 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
-      - name: java ${{matrix.java}} setup
+        uses: coursier/cache-action@v6
+      - name: Java ${{matrix.java}} setup
         uses: olafurpg/setup-scala@v10
         with:
           java-version: ${{matrix.java}}
@@ -49,9 +49,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
-      - name: java ${{matrix.java}} setup
+        uses: coursier/cache-action@v6
+      - name: Java 11 setup
         uses: olafurpg/setup-scala@v10
+        with:
+          java-version: graalvm-ce-java11@21.0.0
       - run: |
           sbt coverage test coverageReport
           bash <(curl -s https://codecov.io/bash)
@@ -60,8 +62,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
-      - name: java ${{matrix.java}} setup
+        uses: coursier/cache-action@v6
+      - name: Java ${{matrix.java}} setup
         uses: olafurpg/setup-scala@v10
       - run: ./scripts/circleci_repl.sh
         env:
@@ -79,8 +81,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.4
       - name: cache SBT
-        uses: coursier/cache-action@v5
-      - name: java ${{matrix.java}} setup
+        uses: coursier/cache-action@v6
+      - name: Java ${{matrix.java}} setup
         uses: olafurpg/setup-scala@v10
         with:
           java-version: ${{matrix.java}}
